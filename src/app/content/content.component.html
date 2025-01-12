@@ -1,1 +1,119 @@
-<h5>Content page</h5>
+  <!-- Search Bar -->
+  <div class="container search-bar">
+    <h3>Search</h3>
+    <div class="search-container">
+      <input type="text" class="form-control search-input" placeholder="Search..." id="search-bar">
+      <!-- Search Icon -->
+      <i class="fas fa-search search-icon"></i>
+    </div>
+  </div>
+  
+   <!-- Applied Filters Section -->
+  <div class="applied-filters d-flex">
+    <h6 class="me-2">Applied Filters:</h6>
+      <div class="badge bg-secondary me-2">
+        e-Voucher
+        <button type="button" class="btn-close btn-close-white ms-2" aria-label="Close"></button>
+      </div>
+      <div class="badge bg-secondary me-2">
+        Products
+        <button type="button" class="btn-close btn-close-white ms-2" aria-label="Close"></button>
+      </div>
+  </div>
+  
+  <div class="container">
+    <div class="row">
+        <!-- Left Column (Categories) -->
+        <div class="col-md-3 category-section">
+            <div class="category-list card">
+              <h5 class="category-title">Categories</h5>
+              <ul class="category-items">
+                <li class="category-item" *ngFor="let category of categories" (click)="selectCategory(category)">
+                  <span class="category-label">
+                    <i class="fas fa-chevron-down"></i> {{ category.name }}
+                  </span>
+                  <span class="category-icon" [class.selected]="category.selected">
+                    <i [class.fas]="category.selected" [class.far]="!category.selected" class="fas fa-check-circle"></i>
+                  </span>
+                </li>
+              </ul>
+            </div>
+        </div>
+  
+        <!-- Right Column (Items) -->
+        <div class="col-md-9">
+          <div class="item-list">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <span class="search-result-count">{{ filteredProducts.length }} Results Found</span>
+              <div>
+                <button class="btn btn-outline-secondary btn-sort" (click)="toggleDrawer()">
+                   Sort
+                </button>
+              </div>
+            </div>
+          
+            <div class="row">
+              <div class="col-12 col-sm-6 col-md-4 mb-3" *ngFor="let product of filteredProducts">
+                <div class="card product-card h-100">
+                  <div class="image-container position-relative">
+                    <img
+                      [src]="product.display_img_url ? product.display_img_url : 'assets/logo1.png'"
+                      class="card-img-top"
+                      [alt]="product.name"
+                    />
+                    <div *ngIf="product.quantity === 0" class="stock-label out-of-stock">
+                      Out of Stock
+                    </div>
+                    <div class="high-demand" *ngIf="product.quantity <= product.low_quantity && product.quantity > 0">
+                      <span class="label-line font-color">ON HIGH DEMAND</span>
+                      <span class="label-line">Only {{ product.quantity }} rewards left</span>
+                    </div>
+                  </div>
+        
+                  <div class="card-body text-center">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-points">{{ product.points }} Points</p>
+                    <p class="card-text text-muted">Valid Until: {{ product.valid_until | date: 'MM/dd/yyyy' }}</p>
+                  </div>
+                </div>
+              </div>          
+            </div>
+            <!-- Per Page Dropdown -->
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <div class="per-page">
+                <select
+                  id="perPage"
+                  class="form-select form-select-sm"
+                  [(ngModel)]="itemsPerPage"
+                  (change)="updatePagination()"
+                >
+                  <option *ngFor="let option of perPageOptions" [value]="option">
+                    {{ option }}
+                  </option>
+                </select>
+                <label for="perPage" class="form-label me-2"> Per page</label>
+              </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  
+   <!-- Drawer Section -->
+   <div class="drawer" [class.open]="isDrawerOpen">
+    <div class="drawer-header d-flex justify-content-between align-items-center p-3">
+      <span>Filter By</span>
+      <span  class="reset-all" (click)="resetFilters()">Reset All</span>
+    </div>
+    <div class="drawer-body">
+      <div class="col-12">
+        <span class="">Sort</span>
+      </div>
+      <div class="col-12">
+        <button class="btn btn-outline-secondary"  [ngClass]="{'selected': selectedSortOrder === 'asc'}"  (click)="setSortOrder('asc')">A-Z</button>
+        <button class="btn btn-outline-secondary"   [ngClass]="{'selected': selectedSortOrder === 'desc'}"  (click)="setSortOrder('desc')">Z-A</button>
+      </div>
+    </div>
+    <div class="drawer-footer p-3 mt-auto">
+      <button class="btn btn-primary w-100 btn-apply" [disabled]="!selectedSortOrder"  (click)="applyFilters()">Apply</button>
+    </div>
+  </div>

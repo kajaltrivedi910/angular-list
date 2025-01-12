@@ -1,0 +1,323 @@
+$primary-color: #fd0000; // Theme color
+$card-bg: #ffffff;
+$card-border-radius: 8px;
+$container-padding: 15px;
+
+$search-bar-padding: 7px;
+$search-icon-color: #6c757d;  // Color for the search icon
+$search-input-padding-left: 40px;  // Padding for the input field to accommodate the icon
+$search-bar-margin-bottom: 20px;  // Margin for search bar
+$result-count-color: #343a40; // Search result text color
+$sort-btn-border-radius: 4px; // Sort button border-radius
+$input-font-size: 1rem;  // Font size for the input field
+
+// Mixin for Cards
+@mixin card-style($bg-color, $border-radius) {
+  background-color: $bg-color;
+  border-radius: $border-radius;
+  padding: $container-padding;
+}
+
+// Search Bar Styles
+.search-bar {
+  margin-bottom: $search-bar-margin-bottom;
+  margin-top: 60px;
+
+  .search-container {
+    position: relative;
+
+    .search-input {
+      padding-left: $search-input-padding-left;  // Space for the icon
+      font-size: $input-font-size;
+      width: 100%;  // Ensure the input takes full width
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: $search-icon-color;
+    }
+  }
+}
+
+/* Applied Filters */
+.applied-filters {
+  padding-left: 16px;
+
+  .badge {
+    display: flex;
+    align-items: center;
+    font-size: 10px;
+    padding: 0.3rem 0.3rem;
+    button {
+      margin-left: 0.5rem;
+    }
+  }
+}
+
+// category
+.category-section {
+  @include card-style($card-bg, $card-border-radius);
+
+  .category-list {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    .category-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #343a40;
+    }
+
+    .category-items {
+      list-style: none;
+      padding: 0;
+
+      .category-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 15px;
+        background-color: #f8f9fa;
+        border-radius: 6px;
+        margin-bottom: 10px;
+        transition: background-color 0.3s;
+
+        &:hover {
+          background-color: #e9ecef;
+        }
+
+        .category-label {
+          font-size: 16px;
+          font-weight: 500;
+          color: #495057;
+
+          i {
+            margin-right: 8px; // Space for chevron-down icon
+            color: #6c757d;
+          }
+        }
+
+        .category-icon {
+          font-size: 16px;
+          color: #6c757d;
+
+          &.selected i {
+            color: $primary-color // Highlight the selected icon
+          }
+        }
+      }
+    }
+  }
+}
+
+// Item List Styles
+.item-list {
+  @include card-style($card-bg, $card-border-radius);
+
+  h5 {
+    margin-bottom: 20px;
+    font-size: 1.125rem;
+  }
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+
+  .search-result-count {
+    font-size: 1rem;
+    font-weight: 600;
+    color: $result-count-color;
+  }
+
+  .btn-sort {
+    font-size: 0.875rem;
+    color: $primary-color;
+    border-radius: $sort-btn-border-radius;
+    display: flex;
+    align-items: center;
+    padding: 8px 15px;
+    border: 1px solid $primary-color;
+ 
+    &:hover {
+      background-color: $primary-color;
+      color: white;
+    }
+  }
+
+  .per-page {
+    display: flex;
+    align-items: center;
+  
+    .form-label {
+      margin-right: 10px;
+    }
+  
+    .form-select {
+      width: auto;
+    }
+  }
+}
+
+ 
+.product-card {
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    height: 100%;
+
+    .image-container {
+      position: relative;
+
+      img {
+        width: 100%;
+        border-bottom: 1px solid #ddd;
+        height: 250px;
+        object-fit: cover;
+      }
+
+      .stock-label {
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        background-color: rgba(192, 188, 180, 0.9);
+        color: white;
+        font-size: 0.8rem;
+        font-weight: bold;
+        padding: 5px 10px;
+        border-radius: 8px;
+      }
+
+      .high-demand {
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        background-color: rgba(192, 188, 180, 0.9);
+        color: white;
+        font-size: 0.8rem;
+        font-weight: bold;
+        padding: 5px 10px;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+
+        .label-line {
+          margin: 2px 0;
+        }
+
+        .font-color {
+          color: rgba(255, 165, 0, 0.9);
+        }
+      }
+    }
+
+    .card-body {
+      padding: 15px;
+      text-align: center;
+
+      .card-title {
+        font-size: 1rem;
+        font-weight: bold;
+        margin-bottom: 5px;
+        color: #212529;
+      }
+
+      .card-points {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #6c757d;
+      }
+
+      .card-text {
+        font-size: 0.8rem;
+        color: #6c757d;
+      }
+    }
+}
+
+
+// Drawer Styles
+.drawer {
+  position: fixed;
+  top: 0;
+  right: -300px;
+  width: 300px;
+  height: 100%;
+  background-color: #f8f9fa;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+  transition: right 0.3s ease-in-out;
+  z-index: 1050;
+
+  &.open {
+    right: 0;
+  }
+
+  .drawer-header {
+    border-bottom: 1px solid #ddd;
+    padding: 20px;
+    font-size: 1.125rem;
+
+    .reset-all {
+      color: rgba(255, 165, 0, 0.9);
+      cursor: pointer;
+    }
+  }
+
+  .drawer-body {
+    margin-top: 20px;
+    padding: 15px;
+    font-size: 1rem;
+  }
+
+  .drawer-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 15px;
+  }
+
+  .btn-outline-secondary.selected {
+    background-color: $primary-color;
+    color: white;
+    border-color: $primary-color;
+  }
+  
+  .btn-outline-secondary.selected:hover {
+    background-color: $primary-color;
+  }
+
+  .btn-apply {
+    width: 100%;
+    padding: 10px;
+    background-color: $primary-color;
+    color: white;
+    border-radius: 4px;
+    font-size: 1rem;
+    border: none;
+
+    &:hover {
+      background-color: darken($primary-color, 10%);
+    }
+  }
+}
+
+
+@media (max-width: 767.98px) {
+  .row {
+    justify-content: center; // Center items for smaller screens
+  }
+
+  .col-12 {
+    margin-bottom: 15px; // Add spacing between stacked items
+  }
+}
