@@ -1,0 +1,106 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 101px;
+    background-color: #ff0000; /* Red background */
+    height: 50px;
+    position: fixed; /* Fixed header */
+    top: 0; /* Stay at the top */
+    left: 0; /* Align to the left */
+    right: 0; /* Align to the right */
+    z-index: 1000; /* Ensure it stays above other content */
+    
+    /* Add some padding-top to the body/content below the header */
+    padding-top: 10px;
+    
+    .logo img {
+      height: 50px;
+    }
+  
+    .icons {
+      display: flex;
+      align-items: center;
+  
+      .icon {
+        margin-left: 20px;
+        font-size: 1.5rem; /* Adjust icon size */
+        color: white; /* Icon color */
+        transition: transform 0.3s;
+  
+        &:hover {
+          transform: scale(1.1); /* Hover effect */
+        }
+      }
+  
+      .notification {
+        position: relative;
+        display: inline-block;
+        font-size: 24px;
+        color: #333;
+  
+        .badge {
+          position: absolute;
+          top: -5px;
+          right: -5px;
+          background-color: red;
+          color: white;
+          font-size: 12px;
+          font-weight: bold;
+          padding: 0.2em 0.5em;
+          border-radius: 50%;
+          min-width: 20px;
+          text-align: center;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+    }
+  
+    /* For medium to small screens (e.g., tablets and small desktops) */
+    @media (max-width: 1024px) {
+      padding: 10px 50px; /* Adjust padding to 50px on larger tablets or smaller desktops */
+  
+      .icons .icon {
+        font-size: 1.25rem; /* Slightly reduce icon size */
+        margin-left: 15px; /* Reduce margin-left for better spacing */
+      }
+  
+      .notification .badge {
+        font-size: 11px; /* Slightly smaller badge size */
+        padding: 0.2em 0.4em; /* Reduce badge padding */
+      }
+    }
+  
+    /* For smaller screens (e.g., mobile devices) */
+    @media (max-width: 768px) {
+      padding: 10px 20px; /* Adjust padding to 20px for tablets and mobile screens */
+  
+      .icons .icon {
+        font-size: 1.2rem; /* Reduce icon size further */
+        margin-left: 10px; /* Reduce spacing between icons */
+      }
+  
+      .notification .badge {
+        font-size: 10px; /* Even smaller badge size */
+        padding: 0.2em 0.3em; /* Adjust padding */
+      }
+    }
+  
+    /* For very small screens (e.g., portrait phones) */
+    @media (max-width: 480px) {
+      padding: 10px 10px; /* Further reduce padding for very small screens */
+  
+      .icons .icon {
+        font-size: 1rem; /* Even smaller icons for small screens */
+        margin-left: 5px; /* Adjust margin for tight spacing */
+      }
+  
+      .notification .badge {
+        font-size: 8px; /* Small badge size on very small screens */
+        padding: 0.1em 0.3em; /* Further reduce badge padding */
+      }
+    }
+  }
+  
