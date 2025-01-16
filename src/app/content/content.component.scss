@@ -125,13 +125,6 @@ $input-font-size: 1rem;  // Font size for the input field
     font-size: 1.125rem;
   }
 
-  .row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-
-
   .search-result-count {
     font-size: 1rem;
     font-weight: 600;
@@ -308,16 +301,5 @@ $input-font-size: 1rem;  // Font size for the input field
     &:hover {
       background-color: darken($primary-color, 10%);
     }
-  }
-}
-
-
-@media (max-width: 767.98px) {
-  .row {
-    justify-content: center; // Center items for smaller screens
-  }
-
-  .col-12 {
-    margin-bottom: 15px; // Add spacing between stacked items
   }
 }
